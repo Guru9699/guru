@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown to Atul Maksad (October 17)</title>
+    <title>Login Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,73 +14,79 @@
             height: 100vh;
             margin: 0;
         }
-
-        .countdown-container {
-            text-align: center;
-            background-color: #fff;
+        .login-container {
+            background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        #countdown {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            font-size: 24px;
-        }
-
-        #countdown div {
-            margin: 0 10px;
+        h2 {
             text-align: center;
         }
-
-        #countdown span {
-            display: block;
-            font-size: 48px;
-            color: #333;
+        .input-group {
+            margin-bottom: 15px;
         }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="countdown-container">
-        <h1>Countdown to Atul Maksad (October 17)</h1>
-        <div id="countdown">
-            <div><span id="days"></span>Days</div>
-            <div><span id="hours"></span>Hours</div>
-            <div><span id="minutes"></span>Minutes</div>
-            <div><span id="seconds"></span>Seconds</div>
-        </div>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" required>
     </div>
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+    </div>
+    <button class="btn" onclick="login()">Login</button>
+    <div class="message" id="message"></div>
+</div>
 
-    <script>
-        const countdown = () => {
-            const targetDate = new Date("October 17, 2024 09:00:00").getTime(); // Set target time to 9 AM
-            const now = new Date().getTime();
-            const timeLeft = targetDate - now;
+<script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const message = document.getElementById('message');
 
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        // Basic validation
+        if (username === 'user' && password === 'pass') {
+            message.textContent = 'Login successful!';
+            message.style.color = 'green';
+        } else {
+            message.textContent = 'Invalid username or password.';
+            message.style.color = 'red';
+        }
+    }
+</script>
 
-            document.getElementById("days").innerText = days;
-            document.getElementById("hours").innerText = hours;
-            document.getElementById("minutes").innerText = minutes;
-            document.getElementById("seconds").innerText = seconds;
-
-            if (timeLeft < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "The date has passed!";
-            }
-        };
-
-        const countdownInterval = setInterval(countdown, 1000);
-    </script>
 </body>
 </html>
